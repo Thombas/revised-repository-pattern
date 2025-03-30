@@ -121,7 +121,7 @@ Each action is built around the `__invoke()` method, which is the entry point th
 Here’s a simple example:
 
 ```php
-public function __invoke()
+public function __invoke(): mixed
 {
     $this->model->create([
         'first_name' => 'Thomas',
@@ -140,14 +140,14 @@ If you want your action to accept additional parameters, you can define them dir
 
 ```php
 public function __construct(
-    protected ?Model $model = null,
-    protected string $firstName,
-    protected string $lastName,
+    public Model $model,
+    public string $firstName,
+    public string $lastName,
 ) {
     parent::__construct(model: $model);
 }
 
-public function __invoke()
+public function __invoke(): mixed
 {
     $this->model->create([
         'first_name' => $this->firstName,
@@ -173,6 +173,96 @@ $user->repository()->action()->createAndEmail(
 ```
 
 This will automatically inject the parameters into your action and run the logic inside `__invoke()`.
+
+---
+
+## Step 5 — Defining a Query
+
+Queries are where you setup reusable sql queries that use set scopes, with behaviours modified by passed variables.  
+Each query is built around the `__invoke()` method, which is the entry point that gets called automatically.
+
+Here’s a simple example:
+
+```php
+public function __invoke(): EloquentBuilder|QueryBuilder
+{
+    return $this->model
+        ->query()
+        ->where('first_name', 'Thomas');
+}
+```
+
+By default, the query has access to the model instance it was called from (unless you specifically chose not to generate a model when creating the query).  
+
+---
+
+### Using Parameters in Your Query
+
+If you want your action to accept additional parameters, you can define them directly through the constructor:
+
+```php
+public function __construct(
+    public Model $model,
+    public string $firstName,
+    public string $lastName,
+) {
+    parent::__construct(model: $model);
+}
+
+public function __invoke(): mixed
+{
+    return $this->model
+        ->query()
+        ->where('first_name', $this->firstName)
+        ->where('last_name', $this->lastName);
+}
+```
+
+> **Important:**  
+> Always remember to call the `parent::__construct()` to correctly initialize the model property.
+
+---
+
+### Use a model-detached query
+
+You can separate the need from a specific model using the following:
+
+```php
+public function __construct(
+    public string $firstName,
+    public string $lastName,
+) {
+    parent::__construct(model: null);
+}
+
+public function __invoke(): mixed
+{
+    return User::query()
+        ->where('first_name', $this->firstName)
+        ->where('last_name', $this->lastName);
+}
+```
+
+> **Important:**  
+> Always remember to call the `parent::__construct()` to correctly initialize the model property.
+
+> **When to use this:**  
+> This will only work if you extend the `BaseQuery` rather than `ModelQuery` class.  This is useful if you have a complex query that doesn't belong to a singular model, or if the logic belongs to one model but the results come from another.
+
+---
+
+### Calling the Query with Parameters
+
+Once set up, you can call the query and pass parameters like this:
+
+```php
+$user->repository()->query()->name(
+    firstName: 'Thomas',
+    lastName: 'Fielding'
+);
+```
+
+This will automatically inject the parameters into your query and run the logic inside `__invoke()`.
 
 ---
 
