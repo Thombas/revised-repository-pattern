@@ -3,6 +3,7 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/thombas/revised-repository-pattern.svg?style=flat-square)](https://packagist.org/packages/thombas/revised-repository-pattern)
 [![Total Downloads](https://img.shields.io/packagist/dt/thombas/revised-repository-pattern.svg?style=flat-square)](https://packagist.org/packages/thombas/revised-repository-pattern)
 [![License: MIT](https://img.shields.io/github/license/Thombas/revised-repository-pattern?style=flat-square)](https://github.com/Thombas/revised-repository-pattern/blob/main/LICENSE)
+[![Tests](https://github.com/Thombas/revised-repository-pattern/actions/workflows/tests.yml/badge.svg)](https://github.com/Thombas/revised-repository-pattern)
 
 ---
 
