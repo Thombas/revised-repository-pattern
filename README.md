@@ -277,20 +277,20 @@ User::repository()->action()->doSomethingCustom();
 
 ## Changelog
 
-See the [CHANGELOG](https://github.com/thomasfielding/revised-repository-pattern/blob/HEAD/CHANGELOG.md) for recent changes.
+See the [CHANGELOG](https://github.com/Thombas/revised-repository-pattern/blob/main/CHANGELOG.md) for recent changes.
 
 ---
 
 ## Contributing
 
 Contributions are welcome!  
-Please read the [CONTRIBUTING guide](https://github.com/thomasfielding/revised-repository-pattern/blob/HEAD/.github/CONTRIBUTING.md) for details.
+Please read the [CONTRIBUTING guide](https://github.com/Thombas/revised-repository-pattern/blob/main/.github/CONTRIBUTING.md) for details.
 
 ---
 
 ## Security
 
-If you discover any security issues, please refer to our [Security Policy](https://github.com/thomasfielding/revised-repository-pattern/security/policy).
+If you discover any security issues, please refer to our [Security Policy](https://github.com/Thombas/revised-repository-pattern/security/policy).
 
 ---
 
@@ -303,4 +303,4 @@ If you discover any security issues, please refer to our [Security Policy](https
 ## License
 
 The MIT License (MIT).  
-See the [LICENSE file](https://github.com/thomasfielding/revised-repository-pattern/blob/HEAD/LICENSE.md) for more details.
+See the [LICENSE file](https://github.com/Thombas/revised-repository-pattern/blob/main/LICENSE.md) for more details.
