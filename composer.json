@@ -1,0 +1,39 @@
+{
+    "name": "thomasfielding/revised-repository-pattern",
+    "description": "A package that adds a repository pattern which extends from the established models",
+    "type": "library",
+    "require": {
+        "php": "^8.0",
+        "spatie/laravel-package-tools": "^1.12",
+        "laravel/framework": ">=11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "ThomasFielding\\RevisedRepositoryPattern\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ThomasFielding\\RevisedRepositoryPattern\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ThomasFielding\\RevisedRepositoryPattern\\PackageServiceProvider"
+            ]
+        }
+    },
+    "require-dev": {
+        "pestphp/pest": "^3.7",
+        "orchestra/testbench": "^10.1"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "scripts": {
+        "test": "pest"
+    }
+}

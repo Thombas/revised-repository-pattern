@@ -1,0 +1,5 @@
+public function __construct(
+        protected Model $model,
+    ) {
+        parent::__construct(model: $model);
+    }
