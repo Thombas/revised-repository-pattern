@@ -1,57 +1,49 @@
 # Revised Repository Pattern for Laravel
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/thomasfielding/revised-repository-pattern.svg?style=flat-square)](https://packagist.org/packages/thomasfielding/revised-repository-pattern)
-[![Total Downloads](https://img.shields.io/packagist/dt/thomasfielding/revised-repository-pattern.svg?style=flat-square)](https://packagist.org/packages/thomasfielding/revised-repository-pattern)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/Thombas/revised-repository-pattern.svg?style=flat-square)](https://packagist.org/packages/Thombas/revised-repository-pattern)
+[![Total Downloads](https://img.shields.io/packagist/dt/Thombas/revised-repository-pattern.svg?style=flat-square)](https://packagist.org/packages/Thombas/revised-repository-pattern)
+[![License: MIT](https://img.shields.io/github/license/Thombas/revised-repository-pattern?style=flat-square)](https://packagist.org/packages/Thombas/revised-repository-pattern)
 
 ---
 
 ## Introduction
 
-The **Revised Repository Pattern** is a Laravel plugin that helps you organize your model-related logic in a cleaner, more structured way — without abandoning Laravel's native models.  
+The **Revised Repository Pattern** is a Laravel package designed to help you organize your model-related logic without sacrificing the native elegance of Laravel's Eloquent models.
 
-If you've ever found yourself wanting:
-- A simple way to organize model-specific actions and queries.
-- A singleton-based approach to working with repositories.
-- To stick closely to Laravel's familiar model system.
+This package is perfect if you want:
 
-Then this package is made for you.
+✅ Cleaner, more structured model actions and queries  
+✅ Singleton-based repository access  
+✅ Full compatibility with Laravel's native models
 
 ---
 
 ## Features
 
 - Lightweight and non-intrusive
-- Builds on top of Laravel's Eloquent models
-- Simple setup
-- Provides a clean repository interface via singleton pattern
-- Artisan commands for generating Actions and Queries
+- Extends Laravel's Eloquent model system
+- Clean repository interface via Singleton pattern
+- Artisan commands for generating Actions & Queries
+- Supports standalone Actions & Queries without model attachment
 
 ---
 
 ## Installation
 
-You can install the package via Composer:
-
 ```bash
-composer require thomasfielding/revised-repository-pattern
+composer require Thombas/revised-repository-pattern
 ```
 
 ---
 
-## Setup
+## Getting Started
 
-### Step 1 — Add the Trait to Your Model
+### ✅ Step 1 — Add the Trait to Your Model
 
-Add the trait to any model that you want to use the repository pattern with.  
-If you have a base model, you can apply it there to make it available to all models at once.
+Add the trait to any model you want to use the repository pattern with:
 
 ```php
-<?php
-
-namespace App\Models;
-
 use ThomasFielding\RevisedRepositoryPattern\Traits\ImplementsRevisedRepositoryPattern;
-use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
@@ -59,84 +51,73 @@ class User extends Model
 }
 ```
 
+> 💡 If you have a base model, you can add it there to apply to all models.
+
 ---
 
-### Step 2 — Accessing the Repository
+### ✅ Step 2 — Accessing the Repository
 
-Once the trait is added, you can access the repository directly from any model instance, or statically:
-
-```php
-User::repository();
-```
-
-or
+You can access the repository both statically and through an instance:
 
 ```php
-$user->repository();
+User::repository(); // Static
+$user->repository(); // Instance
 ```
 
-You can also access this without a model, incase you have actions of queries that don't logically belong with a single model file.
+Or, for general actions/queries:
 
 ```php
 \ThomasFielding\RevisedRepositoryPattern\Repository\Repository::action();
 ```
 
-In this example it is calling an action, but you can call queries or other logic the exact same way.
-
 ---
 
-### Step 3 — Creating Actions and Queries
+### ✅ Step 3 — Generate Actions & Queries
 
-The pattern is designed to separate your actions and queries into their own dedicated classes.
+By default, actions and queries will live under:
 
-By default, the plugin expects:
+```
+App\Actions
+App\Queries
+```
 
-- `App\Actions`
-- `App\Queries`
-
-You can create these folders manually, or generate them automatically using the provided Artisan commands:
+You can manually create these folders or use Artisan:
 
 ```bash
 php artisan repository:action ActionName --model=User
 php artisan repository:query QueryName --model=User
 ```
 
-These commands will create boilerplate classes in the correct namespace.  If you do not want to attach a model, simply leave the flag out.
-
-You can also create subdirectories using the optional dir flag.
+#### Optional:
+Generate into subdirectories:
 
 ```bash
 php artisan repository:action ActionName --model=User --dir=Crud/Create
 ```
 
-This will change the namespace to `App/Actions/Models/User/Crud/Create`
+Resulting namespace:
+
+```
+App\Actions\Models\User\Crud\Create
+```
 
 ---
 
-## Step 4 — Defining an Action
+### ✅ Step 4 — Writing an Action
 
-Actions are where you place the logic that you want to organize for your model.  
-Each action is built around the `__invoke()` method, which is the entry point that gets called automatically.
-
-Here’s a simple example:
+Actions are simple classes where you define model-specific logic inside an `__invoke()` method:
 
 ```php
 public function __invoke(): mixed
 {
     $this->model->create([
         'first_name' => 'Thomas',
-        'last_name'  => 'Fielding',
+        'last_name' => 'Fielding',
     ]);
 }
 ```
 
-By default, the action has access to the model instance it was called from (unless you specifically chose not to generate a model when creating the action).  
-
----
-
-### Using Parameters in Your Action
-
-If you want your action to accept additional parameters, you can define them directly through the constructor:
+#### Adding Parameters to an Action:
 
 ```php
 public function __construct(
@@ -156,14 +137,9 @@ public function __invoke(): mixed
 }
 ```
 
-> **Important:**  
-> Always remember to call the `parent::__construct()` to correctly initialize the model property.
+> ℹ️ Always call `parent::__construct()` when using the constructor.
 
----
-
-### Calling the Action with Parameters
-
-Once set up, you can call the action and pass parameters like this:
+#### Calling an Action with Parameters:
 
 ```php
 $user->repository()->action()->createAndEmail(
@@ -172,16 +148,11 @@ $user->repository()->action()->createAndEmail(
 );
 ```
 
-This will automatically inject the parameters into your action and run the logic inside `__invoke()`.
-
 ---
 
-## Step 5 — Defining a Query
+### ✅ Step 5 — Writing a Query
 
-Queries are where you setup reusable sql queries that use set scopes, with behaviours modified by passed variables.  
-Each query is built around the `__invoke()` method, which is the entry point that gets called automatically.
-
-Here’s a simple example:
+Queries let you encapsulate common SQL logic:
 
 ```php
 public function __invoke(): EloquentBuilder|QueryBuilder
@@ -192,13 +163,7 @@ public function __invoke(): EloquentBuilder|QueryBuilder
 }
 ```
 
-By default, the query has access to the model instance it was called from (unless you specifically chose not to generate a model when creating the query).  
-
----
-
-### Using Parameters in Your Query
-
-If you want your action to accept additional parameters, you can define them directly through the constructor:
+#### Query with Parameters:
 
 ```php
 public function __construct(
@@ -218,14 +183,11 @@ public function __invoke(): mixed
 }
 ```
 
-> **Important:**  
-> Always remember to call the `parent::__construct()` to correctly initialize the model property.
-
 ---
 
-### Use a model-detached query
+### ✅ Model-Detached Query Example:
 
-You can separate the need from a specific model using the following:
+If your query doesn't need a model:
 
 ```php
 public function __construct(
@@ -243,17 +205,11 @@ public function __invoke(): mixed
 }
 ```
 
-> **Important:**  
-> Always remember to call the `parent::__construct()` to correctly initialize the model property.
-
-> **When to use this:**  
-> This will only work if you extend the `BaseQuery` rather than `ModelQuery` class.  This is useful if you have a complex query that doesn't belong to a singular model, or if the logic belongs to one model but the results come from another.
+> ⚠️ Requires extending the `BaseQuery` class instead of `ModelQuery`.
 
 ---
 
-### Calling the Query with Parameters
-
-Once set up, you can call the query and pass parameters like this:
+### ✅ Calling a Query with Parameters:
 
 ```php
 $user->repository()->query()->name(
@@ -262,39 +218,36 @@ $user->repository()->query()->name(
 );
 ```
 
-This will automatically inject the parameters into your query and run the logic inside `__invoke()`.
-
 ---
 
-## Example
+## 🟣 Full Example
 
 ```php
-// Example method you'd define for your action
 User::repository()->action()->doSomethingCustom();
 ```
 
 ---
 
-## Changelog
+## 📜 Changelog
 
-See the [CHANGELOG](https://github.com/Thombas/revised-repository-pattern/blob/main/CHANGELOG.md) for recent changes.
+See the [CHANGELOG](https://github.com/Thombas/revised-repository-pattern/blob/main/CHANGELOG.md) for updates.
 
 ---
 
-## Contributing
+## 🤝 Contributing
 
 Contributions are welcome!  
-Please read the [CONTRIBUTING guide](https://github.com/Thombas/revised-repository-pattern/blob/main/.github/CONTRIBUTING.md) for details.
+See [CONTRIBUTING.md](https://github.com/Thombas/revised-repository-pattern/blob/main/.github/CONTRIBUTING.md) for guidelines.
 
 ---
 
-## Security
+## 🔒 Security
 
-If you discover any security issues, please refer to our [Security Policy](https://github.com/Thombas/revised-repository-pattern/security/policy).
+If you find a security vulnerability, please check our [Security Policy](https://github.com/Thombas/revised-repository-pattern/security/policy).
 
 ---
 
-## Credits
+## 🏆 Credits
 
 - [Thomas Fielding](https://github.com/thomasfielding)
 
@@ -302,5 +255,5 @@ If you discover any security issues, please refer to our [Security Policy](https
 
 ## License
 
-The MIT License (MIT).  
-See the [LICENSE file](https://github.com/Thombas/revised-repository-pattern/blob/main/LICENSE.md) for more details.
+This package is open-sourced software licensed under the **MIT License**.  
+See the [LICENSE file](https://github.com/Thombas/revised-repository-pattern/blob/main/LICENSE.md) for full details.
