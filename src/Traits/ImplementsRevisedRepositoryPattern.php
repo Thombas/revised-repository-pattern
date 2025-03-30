@@ -16,7 +16,9 @@ trait ImplementsRevisedRepositoryPattern
     {
         return match ($method) {
             'repository' => $this->repository(...$parameters),
-            default => throw new BadMethodCallException("Method {$method} does not exist."),
+            default => method_exists(get_parent_class($this), '__call')
+                ? parent::__call($method, $parameters)
+                : throw new BadMethodCallException("Method {$method} does not exist."),
         };
     }
     
@@ -24,7 +26,9 @@ trait ImplementsRevisedRepositoryPattern
     {
         return match ($method) {
             'repository' => (new static)->repository(...$parameters),
-            default => throw new BadMethodCallException("Static method {$method} does not exist."),
+            default => (get_parent_class(static::class) && method_exists(get_parent_class(static::class), '__callStatic'))
+                ? parent::__callStatic($method, $parameters)
+                : throw new BadMethodCallException("Static method {$method} does not exist."),
         };
     }
 }
