@@ -31,7 +31,7 @@ This package is perfect if you want:
 ## Installation
 
 ```bash
-composer require Thombas/revised-repository-pattern
+composer require thomasfielding/revised-repository-pattern
 ```
 
 ---
