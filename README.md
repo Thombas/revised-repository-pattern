@@ -2,7 +2,7 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/thomasfielding/revised-repository-pattern.svg?style=flat-square)](https://packagist.org/packages/thomasfielding/revised-repository-pattern)
 [![Total Downloads](https://img.shields.io/packagist/dt/thomasfielding/revised-repository-pattern.svg?style=flat-square)](https://packagist.org/packages/thomasfielding/revised-repository-pattern)
-[![License: MIT](https://img.shields.io/github/license/thomasfielding/revised-repository-pattern?style=flat-square)](https://github.com/Thombas/revised-repository-pattern/blob/main/LICENSE.md)
+[![License: MIT](https://img.shields.io/github/license/thomasfielding/revised-repository-pattern?style=flat-square)](https://github.com/Thombas/revised-repository-pattern/blob/main/LICENSE)
 
 ---
 
