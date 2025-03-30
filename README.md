@@ -1,8 +1,8 @@
 # Revised Repository Pattern for Laravel
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/Thombas/revised-repository-pattern.svg?style=flat-square)](https://packagist.org/packages/Thombas/revised-repository-pattern)
-[![Total Downloads](https://img.shields.io/packagist/dt/Thombas/revised-repository-pattern.svg?style=flat-square)](https://packagist.org/packages/Thombas/revised-repository-pattern)
-[![License: MIT](https://img.shields.io/github/license/Thombas/revised-repository-pattern?style=flat-square)](https://packagist.org/packages/Thombas/revised-repository-pattern)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/thomasfielding/revised-repository-pattern.svg?style=flat-square)](https://packagist.org/packages/thomasfielding/revised-repository-pattern)
+[![Total Downloads](https://img.shields.io/packagist/dt/thomasfielding/revised-repository-pattern.svg?style=flat-square)](https://packagist.org/packages/thomasfielding/revised-repository-pattern)
+[![License: MIT](https://img.shields.io/github/license/thomasfielding/revised-repository-pattern?style=flat-square)](https://packagist.org/packages/thomasfielding/revised-repository-pattern)
 
 ---
 
