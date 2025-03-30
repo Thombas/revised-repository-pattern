@@ -1,6 +1,6 @@
 <?php
 
-namespace ThomasFielding\RevisedRepositoryPattern\Repository\Query;
+namespace Thombas\RevisedRepositoryPattern\Repository\Query;
 
 use Illuminate\Contracts\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Contracts\Database\Query\Builder as QueryBuilder;

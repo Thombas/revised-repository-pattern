@@ -1,9 +1,9 @@
 <?php
 
-namespace ThomasFielding\RevisedRepositoryPattern\Repository\Query;
+namespace Thombas\RevisedRepositoryPattern\Repository\Query;
 
 use Illuminate\Database\Eloquent\Model;
-use ThomasFielding\RevisedRepositoryPattern\Repository\Query\BaseQuery;
+use Thombas\RevisedRepositoryPattern\Repository\Query\BaseQuery;
 
 abstract class ModelQuery extends BaseQuery
 {

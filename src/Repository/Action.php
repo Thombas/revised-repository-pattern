@@ -1,8 +1,8 @@
 <?php
 
-namespace ThomasFielding\RevisedRepositoryPattern\Repository;
+namespace Thombas\RevisedRepositoryPattern\Repository;
 
-use ThomasFielding\RevisedRepositoryPattern\Repository\BaseRepository;
+use Thombas\RevisedRepositoryPattern\Repository\BaseRepository;
 
 class Action extends BaseRepository
 {

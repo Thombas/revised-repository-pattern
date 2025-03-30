@@ -1,9 +1,9 @@
 <?php
 
-namespace ThomasFielding\RevisedRepositoryPattern\Traits;
+namespace Thombas\RevisedRepositoryPattern\Traits;
 
 use BadMethodCallException;
-use ThomasFielding\RevisedRepositoryPattern\Repository\Repository;
+use Thombas\RevisedRepositoryPattern\Repository\Repository;
 
 trait ImplementsRevisedRepositoryPattern
 {

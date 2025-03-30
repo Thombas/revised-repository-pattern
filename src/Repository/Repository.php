@@ -1,10 +1,10 @@
 <?php
 
-namespace ThomasFielding\RevisedRepositoryPattern\Repository;
+namespace Thombas\RevisedRepositoryPattern\Repository;
 
 use BadMethodCallException;
 use Illuminate\Database\Eloquent\Model;
-use ThomasFielding\RevisedRepositoryPattern\Repository\Action;
+use Thombas\RevisedRepositoryPattern\Repository\Action;
 
 class Repository
 {

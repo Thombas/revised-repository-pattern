@@ -1,10 +1,10 @@
 <?php
 
-namespace ThomasFielding\RevisedRepositoryPattern\Commands;
+namespace Thombas\RevisedRepositoryPattern\Commands;
 
-use ThomasFielding\RevisedRepositoryPattern\Repository\Query\BaseQuery;
-use ThomasFielding\RevisedRepositoryPattern\Repository\Query\ModelQuery;
-use ThomasFielding\RevisedRepositoryPattern\Commands\BaseRepositoryCommand;
+use Thombas\RevisedRepositoryPattern\Repository\Query\BaseQuery;
+use Thombas\RevisedRepositoryPattern\Repository\Query\ModelQuery;
+use Thombas\RevisedRepositoryPattern\Commands\BaseRepositoryCommand;
 
 class RepositoryQueryCommand extends BaseRepositoryCommand
 {

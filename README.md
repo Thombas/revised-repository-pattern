@@ -2,7 +2,7 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/thomasfielding/revised-repository-pattern.svg?style=flat-square)](https://packagist.org/packages/thomasfielding/revised-repository-pattern)
 [![Total Downloads](https://img.shields.io/packagist/dt/thomasfielding/revised-repository-pattern.svg?style=flat-square)](https://packagist.org/packages/thomasfielding/revised-repository-pattern)
-[![License: MIT](https://img.shields.io/github/license/thomasfielding/revised-repository-pattern?style=flat-square)](https://github.com/Thombas/revised-repository-pattern/blob/main/LICENSE)
+[![License: MIT](https://img.shields.io/github/license/Thombas/revised-repository-pattern?style=flat-square)](https://github.com/Thombas/revised-repository-pattern/blob/main/LICENSE)
 
 ---
 
@@ -31,7 +31,7 @@ This package is perfect if you want:
 ## Installation
 
 ```bash
-composer require thomasfielding/revised-repository-pattern
+composer require thombas/revised-repository-pattern
 ```
 
 ---
@@ -43,7 +43,7 @@ composer require thomasfielding/revised-repository-pattern
 Add the trait to any model you want to use the repository pattern with:
 
 ```php
-use ThomasFielding\RevisedRepositoryPattern\Traits\ImplementsRevisedRepositoryPattern;
+use Thombas\RevisedRepositoryPattern\Traits\ImplementsRevisedRepositoryPattern;
 
 class User extends Model
 {
@@ -67,7 +67,7 @@ $user->repository(); // Instance
 Or, for general actions/queries:
 
 ```php
-\ThomasFielding\RevisedRepositoryPattern\Repository\Repository::action();
+\Thombas\RevisedRepositoryPattern\Repository\Repository::action();
 ```
 
 ---
@@ -249,7 +249,7 @@ If you find a security vulnerability, please check our [Security Policy](https:/
 
 ## 🏆 Credits
 
-- [Thomas Fielding](https://github.com/thomasfielding)
+- [Thomas Fielding](https://github.com/Thombas)
 
 ---
 

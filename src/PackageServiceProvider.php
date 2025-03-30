@@ -1,11 +1,11 @@
 <?php
 
-namespace ThomasFielding\RevisedRepositoryPattern;
+namespace Thombas\RevisedRepositoryPattern;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
-use ThomasFielding\RevisedRepositoryPattern\Commands\RepositoryQueryCommand;
-use ThomasFielding\RevisedRepositoryPattern\Commands\RepositoryActionCommand;
+use Thombas\RevisedRepositoryPattern\Commands\RepositoryQueryCommand;
+use Thombas\RevisedRepositoryPattern\Commands\RepositoryActionCommand;
 use Spatie\LaravelPackageTools\PackageServiceProvider as SpatiePackageServiceProvider;
 
 class PackageServiceProvider extends SpatiePackageServiceProvider
@@ -20,7 +20,7 @@ class PackageServiceProvider extends SpatiePackageServiceProvider
             ->hasInstallCommand(function(InstallCommand $command) {
                 $command
                     ->publishConfigFile()
-                    ->askToStarRepoOnGitHub('thomasfielding/revised-repository-pattern');
+                    ->askToStarRepoOnGitHub('Thombas/revised-repository-pattern');
             });;
     }
 }

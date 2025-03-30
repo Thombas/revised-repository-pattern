@@ -1,6 +1,6 @@
 <?php
 
-namespace ThomasFielding\RevisedRepositoryPattern\Repository;
+namespace Thombas\RevisedRepositoryPattern\Repository;
 
 use BadMethodCallException;
 use Illuminate\Support\Str;

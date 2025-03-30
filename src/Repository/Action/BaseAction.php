@@ -1,6 +1,6 @@
 <?php
 
-namespace ThomasFielding\RevisedRepositoryPattern\Repository\Action;
+namespace Thombas\RevisedRepositoryPattern\Repository\Action;
 
 abstract class BaseAction
 {

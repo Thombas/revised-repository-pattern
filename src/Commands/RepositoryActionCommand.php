@@ -1,10 +1,10 @@
 <?php
 
-namespace ThomasFielding\RevisedRepositoryPattern\Commands;
+namespace Thombas\RevisedRepositoryPattern\Commands;
 
-use ThomasFielding\RevisedRepositoryPattern\Commands\BaseRepositoryCommand;
-use ThomasFielding\RevisedRepositoryPattern\Repository\Action\BaseAction;
-use ThomasFielding\RevisedRepositoryPattern\Repository\Action\ModelAction;
+use Thombas\RevisedRepositoryPattern\Commands\BaseRepositoryCommand;
+use Thombas\RevisedRepositoryPattern\Repository\Action\BaseAction;
+use Thombas\RevisedRepositoryPattern\Repository\Action\ModelAction;
 
 class RepositoryActionCommand extends BaseRepositoryCommand
 {

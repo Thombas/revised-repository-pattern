@@ -1,5 +1,5 @@
 {
-    "name": "thomasfielding/revised-repository-pattern",
+    "name": "thombas/revised-repository-pattern",
     "description": "A package that adds a repository pattern which extends from the established models",
     "type": "library",
     "require": {
@@ -9,18 +9,18 @@
     },
     "autoload": {
         "psr-4": {
-            "ThomasFielding\\RevisedRepositoryPattern\\": "src/"
+            "Thombas\\RevisedRepositoryPattern\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "ThomasFielding\\RevisedRepositoryPattern\\Tests\\": "tests/"
+            "Thombas\\RevisedRepositoryPattern\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "ThomasFielding\\RevisedRepositoryPattern\\PackageServiceProvider"
+                "Thombas\\RevisedRepositoryPattern\\PackageServiceProvider"
             ]
         }
     },

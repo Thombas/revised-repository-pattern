@@ -1,6 +1,6 @@
 <?php
 
-namespace ThomasFielding\RevisedRepositoryPattern\Tests\Traits;
+namespace Thombas\RevisedRepositoryPattern\Tests\Traits;
 
 use Illuminate\Support\Facades\File;
 

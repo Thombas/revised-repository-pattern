@@ -1,9 +1,9 @@
 <?php
 
-namespace ThomasFielding\RevisedRepositoryPattern\Tests;
+namespace Thombas\RevisedRepositoryPattern\Tests;
 
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
-use ThomasFielding\RevisedRepositoryPattern\Tests\Traits\CanPrepareFiles;
+use Thombas\RevisedRepositoryPattern\Tests\Traits\CanPrepareFiles;
 
 abstract class TestCase extends OrchestraTestCase
 {
@@ -12,7 +12,7 @@ abstract class TestCase extends OrchestraTestCase
     protected function getPackageProviders($app)
     {
         return [
-            \ThomasFielding\RevisedRepositoryPattern\PackageServiceProvider::class,
+            \Thombas\RevisedRepositoryPattern\PackageServiceProvider::class,
         ];
     }
     

@@ -1,6 +1,6 @@
 <?php
 
-namespace ThomasFielding\RevisedRepositoryPattern\Commands;
+namespace Thombas\RevisedRepositoryPattern\Commands;
 
 use Illuminate\Console\Command;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace ThomasFielding\RevisedRepositoryPattern\Repository\Action;
+namespace Thombas\RevisedRepositoryPattern\Repository\Action;
 
 use Illuminate\Database\Eloquent\Model;
-use ThomasFielding\RevisedRepositoryPattern\Repository\Action\BaseAction;
+use Thombas\RevisedRepositoryPattern\Repository\Action\BaseAction;
 
 abstract class ModelAction extends BaseAction
 {

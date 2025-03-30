@@ -1,11 +1,10 @@
 <?php
 
-namespace ThomasFielding\RevisedRepositoryPattern\Tests\Features;
+namespace Thombas\RevisedRepositoryPattern\Tests\Features;
 
 use BadMethodCallException;
-use Illuminate\Support\Facades\File;
 use Illuminate\Database\Eloquent\Model;
-use ThomasFielding\RevisedRepositoryPattern\Repository\BaseRepository;
+use Thombas\RevisedRepositoryPattern\Repository\BaseRepository;
 
 class DummyModel extends Model {}
 

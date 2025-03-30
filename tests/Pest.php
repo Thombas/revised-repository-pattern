@@ -1,7 +1,7 @@
 <?php
 
-namespace ThomasFielding\RevisedRepositoryPattern\Tests;
+namespace Thombas\RevisedRepositoryPattern\Tests;
 
-use ThomasFielding\RevisedRepositoryPattern\Tests\TestCase;
+use Thombas\RevisedRepositoryPattern\Tests\TestCase;
 
 uses(TestCase::class)->in('Features');

@@ -12,7 +12,7 @@ All notable changes to `revised-repository-pattern` will be documented in this f
 
 * N/A
 
-**Full Changelog**: https://github.com/thomasfielding/revised-repository-pattern/compare/1.0.0...1.0.0
+**Full Changelog**: https://github.com/Thombas/revised-repository-pattern/compare/1.0.0...1.0.0
 
 ## 1.0.0 - 2025-03-30
 
