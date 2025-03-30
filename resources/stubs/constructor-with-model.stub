@@ -1,5 +1,5 @@
 public function __construct(
-        protected Model $model,
+        public Model $model,
     ) {
         parent::__construct(model: $model);
     }
