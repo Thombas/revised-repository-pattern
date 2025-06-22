@@ -2,6 +2,7 @@
 
 namespace Thombas\RevisedRepositoryPattern\Repository;
 
+use ReflectionClass;
 use BadMethodCallException;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
@@ -34,48 +35,92 @@ abstract class BaseRepository
 
     abstract protected function baseFolder(): string;
     
+    private function registerActions(
+        string $baseRelativePath,
+        bool $skipModels,
+        callable $classResolver,
+        bool $withModel
+    ): void {
+        $directory = app_path($baseRelativePath);
+
+        if (!File::isDirectory($directory)) {
+            return;
+        }
+
+        foreach (File::allFiles($directory) as $file) {
+            $relative = $this->getRelativePath($file->getPathname(), $directory);
+
+            if ($skipModels
+                && in_array('Models', explode(DIRECTORY_SEPARATOR, $relative), true)
+            ) {
+                continue;
+            }
+
+            $methodName = $this->buildMethodName($relative);
+            $className  = $classResolver($relative);
+
+            $ctorParams = (new ReflectionClass($className))
+                ->getConstructor()?->getParameters()
+                ?? [];
+
+            $allowed = [];
+            foreach ($ctorParams as $p) {
+                if ($p->isVariadic()) {
+                    $allowed = null;
+                    break;
+                }
+                $allowed[$p->getName()] = true;
+            }
+
+            $this->methods[$methodName] = $withModel
+                ? (
+                    $allowed === null
+                        ? function (mixed ...$args) use ($className) {
+                            $params = ['model' => $this->model] + $args;
+                            return (new $className(...$params))->__invoke();
+                        }
+                        : function (mixed ...$args) use ($className, $allowed) {
+                            $params = ['model' => $this->model] + $args;
+                            $params = array_intersect_key($params, $allowed);
+                            return (new $className(...$params))->__invoke();
+                        }
+                )
+                : (
+                    $allowed === null
+                        ? function (mixed ...$args) use ($className) {
+                            return (new $className(...$args))->__invoke();
+                        }
+                        : function (mixed ...$args) use ($className, $allowed) {
+                            $params = array_intersect_key($args, $allowed);
+                            return (new $className(...$params))->__invoke();
+                        }
+                );
+        }
+    }
+
     private function registerModelMethods(): void
     {
         $baseFolder = $this->baseFolder();
-        $basePath = class_basename($this->model);
-        $directory = app_path("{$baseFolder}/Models/{$basePath}");
-    
-        if (!File::exists($directory) || !File::isDirectory($directory)) {
-            return;
-        }
-    
-        foreach (File::allFiles($directory) as $file) {
-            $relative = $this->getRelativePath($file->getPathname(), $directory);
-            $methodName = $this->buildMethodName($relative);
-            $className = $this->buildModelClassName($relative, $baseFolder, $basePath);
-    
-            $this->methods[$methodName] = function (...$args) use ($className) {
-                return app($className, array_merge(['model' => $this->model], $args))->__invoke();
-            };
-        }
+        $basePath   = class_basename($this->model);
+
+        $this->registerActions(
+            "{$baseFolder}/Models/{$basePath}",
+            false,
+            fn($relative) => $this->buildModelClassName($relative, $baseFolder, $basePath),
+            true
+        );
     }
-    
+
     private function registerDefaultMethods(): void
     {
         $baseFolder = $this->baseFolder();
-        $directory = app_path($baseFolder);
 
-        if (!File::exists($directory)) {
-            return;
-        }
-    
-        foreach (File::allFiles($directory) as $file) {
-            $relative = $this->getRelativePath($file->getPathname(), $directory);
-            if (in_array('Models', explode(DIRECTORY_SEPARATOR, $relative))) {
-                continue;
-            }
-            $methodName = $this->buildMethodName($relative);
-            $className = $this->buildDefaultClassName($relative, $baseFolder);
-    
-            $this->methods[$methodName] = function (...$args) use ($className) {
-                return app($className, $args)->__invoke();
-            };
-        }
+        $this->registerActions(
+            $baseFolder,
+            true,
+            fn($relative) => $this->buildDefaultClassName($relative, $baseFolder),
+            false
+        );
     }
     
     private function getRelativePath(string $path, string $directory): string
